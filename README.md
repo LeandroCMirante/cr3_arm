@@ -38,3 +38,33 @@ rode o programa de controle pelo teclado:
 cd cr3_arm/cr3_teleop/scripts
 python3 keyboard_teleop.py
 ```
+
+# Teleoperação Robô real
+Terminal 1 (O Bringup Original da Dobot):
+
+```
+export IP_address=SEU.IP.DO.ROBO (já configurado no bashrc)
+ros2 launch dobot_bringup_v3 dobot_bringup_ros2.launch.py
+```
+
+Terminal 2 (MoveIt + Servo Real):
+```
+ros2 launch cr3_moveit_config real_moveit_servo.launch.py
+```
+
+Terminal 3 (A Nossa Ponte Mágica):
+```
+export IP_address=SEU.IP.DO.ROBO (já configurado no bashrc)
+cd ~/cr3_arm/cr3_teleop/scripts
+python3 real_robot_bridge.py
+```
+
+Terminal 4 (Ativar o Servo):
+```
+ros2 service call /servo_node/start_servo std_srvs/srv/Trigger "{}"
+```
+Terminal 5 (Seu Teclado):
+```
+cd ~/cr3_arm/cr3_teleop/scripts
+python3 keyboard_teleop.py
+```
