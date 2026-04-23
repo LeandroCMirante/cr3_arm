@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<robot name="cr3_custom" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- Custom parts -->
+  <xacro:include filename="$(find cr3_custom_description)/urdf/mech/custom_base.urdf.xacro"/>
+  <xacro:include filename="$(find cr3_custom_description)/urdf/mech/simple_gripper.urdf.xacro"/>
+
+  <!-- CR3 arm macro -->
+  <xacro:include filename="$(find cr3_custom_description)/urdf/mech/cr3_macro.xacro"/>
+
+  <!-- World -->
+  <link name="world"/>
+
+  <!-- Custom base attached to world -->
+  <xacro:custom_base parent="world"/>
+
+  <!-- CR3 arm attached to the custom base -->
+  <xacro:cr3_arm parent="custom_base_link"/>
+
+  <!-- Simple gripper attached to the CR3 end -->
+  <xacro:simple_gripper parent="Link6"/>
+
+</robot>

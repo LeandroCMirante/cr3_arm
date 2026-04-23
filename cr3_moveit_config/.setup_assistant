@@ -1,0 +1,10 @@
+moveit_setup_assistant_config:
+  urdf:
+    package: cr3_custom_description
+    relative_path: urdf/robots/cr3_custom_gazebo.urdf.xacro
+  srdf:
+    relative_path: config/cr3_custom_gazebo.srdf
+  package_settings:
+    author_name: Leandro Mirante
+    author_email: leandro.c.mirante@gmail.com
+    generated_timestamp: 1776875330

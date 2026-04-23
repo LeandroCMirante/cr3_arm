@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="cr3_custom_gazebo">
+    <xacro:arg name="initial_positions_file" default="initial_positions.yaml" />
+
+    <!-- Import cr3_custom_gazebo urdf file -->
+    <xacro:include filename="$(find cr3_custom_description)/urdf/robots/cr3_custom_gazebo.urdf.xacro" />
+
+    <!-- Import control_xacro -->
+    <xacro:include filename="cr3_custom_gazebo.ros2_control.xacro" />
+
+
+    <xacro:cr3_custom_gazebo_ros2_control name="FakeSystem" initial_positions_file="$(arg initial_positions_file)"/>
+    <gazebo>
+        <plugin filename="ign_ros2_control-system" name="ign_ros2_control::IgnitionROS2ControlPlugin">
+            <parameters>$(find cr3_moveit_config)/config/ros2_controllers.yaml</parameters>
+        </plugin>
+    </gazebo>
+</robot>

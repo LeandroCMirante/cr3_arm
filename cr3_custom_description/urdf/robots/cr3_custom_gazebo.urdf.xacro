@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<robot name="cr3_custom_gazebo" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- Base -->
+  <xacro:include filename="$(find cr3_custom_description)/urdf/mech/custom_base.urdf.xacro"/>
+
+  <!-- Gripper -->
+  <xacro:include filename="$(find cr3_custom_description)/urdf/mech/simple_gripper.urdf.xacro"/>
+
+  <!-- CR3 arm -->
+  <xacro:include filename="$(find cr3_custom_description)/urdf/mech/cr3_macro.xacro"/>
+
+  <link name="world"/>
+
+  <xacro:custom_base parent="world"/>
+
+  <xacro:cr3_arm parent="custom_base_link"/>
+
+  <xacro:simple_gripper parent="Link6"/>
+
+  <!-- Gazebo Sim ros2_control integration -->
+  <ros2_control name="GazeboSimSystem" type="system">
+    <hardware>
+      <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+    </hardware>
+
+    <joint name="joint1">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <joint name="joint2">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <joint name="joint3">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <joint name="joint4">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <joint name="joint5">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <joint name="joint6">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+  </ros2_control>
+
+  <gazebo>
+    <plugin filename="libgz_ros2_control-system.so"
+            name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+        <parameters>$(find cr3_custom_gazebo)/config/controllers.yaml</parameters>
+    </plugin>
+    </gazebo>
+
+</robot>
