@@ -65,6 +65,8 @@ ros2 service call /servo_node/start_servo std_srvs/srv/Trigger "{}"
 ```
 Terminal 5 (Seu Teclado):
 ```
+ros2 service call /dobot_bringup_v3/srv/JointMovJ dobot_msgs_v3/srv/JointMovJ "{j1: 0.0, j2: 34.8, j3: -98.7, j4: -16.9, j5: 92.4, j6: 0.0}"
+
 cd ~/cr3_arm/cr3_teleop/scripts
 python3 keyboard_teleop.py
 ```
